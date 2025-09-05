@@ -1,0 +1,598 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2575.4">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; -webkit-text-stroke: #000000}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; -webkit-text-stroke: #000000; min-height: 14.0px}
+    span.s1 {font-kerning: none}
+  </style>
+</head>
+<body>
+<p class="p1"><span class="s1">&lt;!DOCTYPE html&gt;</span></p>
+<p class="p1"><span class="s1">&lt;html lang="en"&gt;</span></p>
+<p class="p1"><span class="s1">&lt;head&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;meta charset="UTF-8"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;title&gt;Naming objects to detect&lt;/title&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;!-- Tailwind CSS CDN --&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;script src="https://cdn.tailwindcss.com"&gt;&lt;/script&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;!-- Google Fonts for Inter --&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;link rel="preconnect" href="https://fonts.googleapis.com"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;link rel="preconnect" href="https://fonts.gstatic.com" crossorigin&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;style&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>body {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>font-family: 'Inter', sans-serif;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>background-color: #0D0C1D;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.scroll-container::-webkit-scrollbar {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>display: none;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.scroll-container {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>-ms-overflow-style: none;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>scrollbar-width: none;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.comment-container {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>word-break: break-word;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;/style&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/head&gt;</span></p>
+<p class="p1"><span class="s1">&lt;body class="bg-[#0D0C1D] flex items-center justify-center min-h-screen p-4"&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;!-- Main Application Container --&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;div class="bg-[#1A1A2E] rounded-xl shadow-2xl p-6 md:p-10 w-full max-w-5xl flex flex-col space-y-8"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;header class="text-center"&gt;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;/header&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;!-- Loading and Error Indicators --&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;div id="loading" class="text-center text-gray-400 mt-4 hidden"&gt;Loading content...&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;div id="error-message" class="text-center text-red-500 mt-4 hidden"&gt;&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;!-- Single Image View and Comment Sections --&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;div id="main-content" class="flex flex-col items-center gap-6"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;!-- Content will be dynamically added here --&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;!-- Firebase --&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;script type="module"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>import { getFirestore, collection, addDoc, onSnapshot, query, where, serverTimestamp, doc, updateDoc, getDocs } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>import { setLogLevel } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>setLogLevel('debug');</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>let db, auth;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>let userId;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>let userName = "Anonymous";</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>let currentImageIndex = -1; // Initial state to show the title page</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>const firebaseConfig = JSON.parse(typeof __firebase_config !== 'undefined' ? __firebase_config : '{}');</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>const initialAuthToken = typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : null;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>const mainContent = document.getElementById('main-content');</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>const loadingIndicator = document.getElementById('loading');</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>const errorMessageDiv = document.getElementById('error-message');</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>const images = [</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>{ id: 'image1', src: 'https://i.imgur.com/1cgalhB.png', question: 'How would you describe the types of text in these images? If you wanted to uplaod a video with similar examples of text like this, what would you want to select on upload for Secure Redact to find them all? N.B the types of text captured in the scene of a video, like these, will get the best detection results from our "scene text" model. This model will detect sections of scene text, which can then be fed into our OCR to search / re_ID and redact.' },</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>{ id: 'image2', src: 'https://i.imgur.com/0WBdPcV.png', alt: 'Cluttered Mobile UI', question: 'How would you describe the objects in these images? Assume a user wants to redact a wide range of screens in different videos, what is the simplest thing for them to select to detect these? Screens, Displays, Terminals, Something else?' },</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>{ id: 'image3', src: 'https://i.imgur.com/w9BmpNV.jpeg', alt: 'Collaborative Document', question: 'How would you describe the types of text in these images? The text in these images will get better results from using our snapshot text detector. ie. a different model to the one we would use for the scene based text. This model will detect text with direct OCR - will give better results for these cases, and will give word level detection. Ideal for mobile screen recordings and scans of images/documents.' },</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>];</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>// Function to shuffle an array (Fisher-Yates algorithm)</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>const shuffleArray = (array) =&gt; {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>for (let i = array.length - 1; i &gt; 0; i--) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>const j = Math.floor(Math.random() * (i + 1));</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>[array[i], array[j]] = [array[j], array[i]];</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>};</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>// Shuffle the images array once when the app loads</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>shuffleArray(images);</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>const commentsPath = `/artifacts/${appId}/public/data/comments`;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>const stopwords = new Set([</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>'a', 'an', 'and', 'are', 'as', 'at', 'be', 'but', 'by', 'for', 'if', 'in', 'into', 'is', 'it', 'no', 'not', 'of', 'on', 'or', 'such', 'that', 'the', 'their', 'then', 'there', 'these', 'they', 'this', 'to', 'was', 'will', 'with', 'from', 'what', 'would', 'should', 'could'</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>]);</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>const showErrorMessage = (message) =&gt; {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>errorMessageDiv.textContent = message;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>errorMessageDiv.classList.remove('hidden');</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>};</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>const setupFirebase = async () =&gt; {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>try {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>const app = initializeApp(firebaseConfig);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>auth = getAuth(app);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>db = getFirestore(app);</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>if (initialAuthToken) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>await signInWithCustomToken(auth, initialAuthToken);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>} else {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>await signInAnonymously(auth);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>onAuthStateChanged(auth, (user) =&gt; {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>if (user) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>userId = user.uid;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>renderContent();</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>} else {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>// We are signed out.</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>userId = null;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>renderContent();</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>});</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>} catch (error) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>console.error("Firebase initialization or authentication failed:", error);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>showErrorMessage(`Firebase Error: ${error.message}`);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>};</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>const renderContent = () =&gt; {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>window.scrollTo(0, 0); // Scroll to top on page load</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>mainContent.innerHTML = '';</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>if (currentImageIndex === -1) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>renderTitlePage();</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>} else if (currentImageIndex &lt; images.length) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>renderSingleImage();</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>} else {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>renderSummaryView();</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>};</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>const renderTitlePage = () =&gt; {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const titlePageContainer = document.createElement('div');</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>titlePageContainer.className = "w-full max-w-2xl flex flex-col items-center text-center space-y-8";</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>titlePageContainer.innerHTML = `</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;div class="w-full flex justify-end mb-4"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;img src="https://images.squarespace-cdn.com/content/v1/60096d6b21350175922f9148/30c1ff1f-471c-4901-b7b0-16a56c32ac45/NEW_SD_LOGO_PBP_col.png?format=1500w" alt="Secure Redact Logo" class="h-10"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;p class="text-gray-400 italic text-base"&gt;Potato, potahto, tomato, tomahto.&lt;/p&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;h2 class="text-4xl md:text-5xl font-extrabold text-[#F26722]"&gt;Welcome to object naming task&lt;/h2&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;p class="text-gray-300 text-lg md:text-xl leading-relaxed"&gt;This app will guide you through a series of images. Your task is to describe the entities and objects you see in the images. We are trying to simplify how we should refer to various things / objects that users will want to detect/redact. Screens vs Displays vs Text vs Scene Text vs Screen recordings vs text in scanned documents.&lt;/p&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;div class="w-full space-y-4"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;input type="text" id="name-input" placeholder="Enter your name or alias" class="w-full rounded-md bg-gray-800 text-gray-300 border-gray-700 shadow-sm focus:border-[#F26722] focus:ring-[#F26722] transition-colors duration-200 p-2.5 text-sm text-center"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;button id="start-btn" class="w-full bg-[#F26722] hover:bg-[#D4591F] text-white font-semibold py-3 px-8 rounded-md shadow-lg transition-colors duration-200 ease-in-out text-lg"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>Get Started</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;/button&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>`;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>mainContent.appendChild(titlePageContainer);</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const nameInput = document.getElementById('name-input');</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>document.getElementById('start-btn').addEventListener('click', () =&gt; {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>userName = nameInput.value.trim() || "Anonymous";</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>currentImageIndex = 0;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>renderContent();</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>});</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>};</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>const renderSingleImage = async () =&gt; {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const image = images[currentImageIndex];</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const card = document.createElement('div');</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>card.className = "bg-[#1A1A2E] rounded-lg shadow-md overflow-hidden flex flex-col w-full";</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>card.innerHTML = `</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;div class="w-full bg-gray-900 flex items-center justify-center relative"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;img src="${image.src}" alt="${image.alt}" class="w-full h-auto"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;div class="p-4 flex-grow flex flex-col justify-between text-gray-300"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;p class="font-semibold mb-4"&gt;${image.question}&lt;/p&gt;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">                    </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;!-- Comment Input Form --&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;div class="space-y-2 mb-4"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;input type="text" id="comment-input" placeholder="Add a comment..." class="w-full rounded-md bg-gray-800 text-gray-300 border-gray-700 shadow-sm focus:border-[#F26722] focus:ring-[#F26722] transition-colors duration-200 p-2.5 text-sm"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;button id="post-comment" class="w-full bg-[#F26722] hover:bg-[#D4591F] text-white font-semibold py-2 px-4 rounded-md shadow-md transition-colors duration-200 ease-in-out disabled:bg-gray-700 text-sm"&gt;Post Comment&lt;/button&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;!-- Comments Gallery --&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;div class="mt-4 mb-4"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;h3 class="text-lg font-semibold text-gray-300 mb-2"&gt;Comment History&lt;/h3&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;div id="comments-gallery" class="bg-gray-800 rounded-lg p-4 max-h-48 overflow-y-auto scroll-container"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;p class="text-center text-gray-500 text-sm"&gt;No comments yet.&lt;/p&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;!-- Gemini Suggestions Section --&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;div class="mt-4 mb-4"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;h3 class="text-lg font-semibold text-gray-300 mb-2"&gt;Gemini Suggestions&lt;/h3&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;div id="gemini-suggestions-container" class="bg-gray-800 rounded-lg p-4 text-gray-400 italic"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;p class="text-center text-gray-500 text-sm"&gt;Suggestions will appear here as comments are added.&lt;/p&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;!-- Gemini Ideas Section --&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;div class="mt-4 mb-4"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;h3 class="text-lg font-semibold text-gray-300 mb-2"&gt;Gemini Ideas&lt;/h3&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;div id="gemini-ideas-container" class="bg-gray-800 rounded-lg p-4 text-gray-400"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;p class="text-center text-gray-500 text-sm"&gt;Generating ideas...&lt;/p&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>`;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>mainContent.appendChild(card);</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>// Navigation buttons</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const navigationContainer = document.createElement('div');</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>navigationContainer.className = "flex justify-center items-center gap-4 mt-4 w-full";</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const nextButtonText = currentImageIndex === images.length - 1 ? 'View Summary &amp;rarr;' : 'Next &amp;rarr;';</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>navigationContainer.innerHTML = `</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;button id="prev-btn" class="bg-gray-700 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded-full transition-colors duration-200 ease-in-out disabled:opacity-50 disabled:cursor-not-allowed text-sm"&gt;&amp;larr; Previous&lt;/button&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;span class="text-gray-400 text-sm font-medium"&gt;Image ${currentImageIndex + 1} of ${images.length}&lt;/span&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;button id="next-btn" class="bg-[#F26722] hover:bg-[#D4591F] text-white font-bold py-2 px-4 rounded-full shadow-md transition-colors duration-200 ease-in-out disabled:opacity-50 disabled:cursor-not-allowed text-sm"&gt;${nextButtonText}&lt;/button&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>`;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>mainContent.appendChild(navigationContainer);</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>// Add event listeners and update button states</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const commentInput = document.getElementById('comment-input');</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const postButton = document.getElementById('post-comment');</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const prevButton = document.getElementById('prev-btn');</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const nextButton = document.getElementById('next-btn');</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const commentsGallery = card.querySelector('#comments-gallery');</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const geminiSuggestionsContainer = card.querySelector('#gemini-suggestions-container');</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const geminiIdeasContainer = card.querySelector('#gemini-ideas-container');</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>postButton.addEventListener('click', () =&gt; postComment(image.id, commentInput));</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>commentInput.addEventListener('keydown', (e) =&gt; {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>if (e.key === 'Enter') postComment(image.id, commentInput);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>});</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>prevButton.addEventListener('click', showPrevious);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>nextButton.addEventListener('click', showNext);</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>prevButton.disabled = currentImageIndex === 0;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const ideas = await getGeminiIdeas(image.question);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>geminiIdeasContainer.textContent = ideas;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>startCommentListener(image.id, commentsGallery, geminiSuggestionsContainer);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>};</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>const renderSummaryView = async () =&gt; {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const summaryContainer = document.createElement('div');</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>summaryContainer.className = "w-full max-w-5xl flex flex-col space-y-8 text-gray-300";</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const summaryHeader = document.createElement('h2');</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>summaryHeader.className = "text-3xl font-bold text-gray-300 text-center";</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>summaryHeader.textContent = "Overall Summary &amp; Final Thoughts";</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>summaryContainer.appendChild(summaryHeader);</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const grid = document.createElement('div');</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>grid.className = "grid grid-cols-1 md:grid-cols-2 gap-6";</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>images.forEach(image =&gt; {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>const summaryCard = document.createElement('div');</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>summaryCard.className = "bg-[#1A1A2E] rounded-lg shadow-md overflow-hidden p-4 flex flex-col";</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">                </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>summaryCard.innerHTML = `</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;h3 class="font-semibold text-gray-300 mb-2 truncate"&gt;Summary for Image: ${image.id}&lt;/h3&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;div class="w-full bg-gray-900 flex items-center justify-center relative mb-4"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;img src="${image.src}" alt="${image.alt}" class="w-full h-auto"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;div id="image-comments-gallery-${image.id}" class="bg-gray-800 rounded-lg p-4 h-48 overflow-y-auto scroll-container"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                         </span>&lt;p class="text-center text-gray-500 text-sm"&gt;No comments yet.&lt;/p&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>`;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>grid.appendChild(summaryCard);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>const imageCommentsGallery = summaryCard.querySelector(`#image-comments-gallery-${image.id}`);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>startCommentListener(image.id, imageCommentsGallery, null);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>});</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>summaryContainer.appendChild(grid);</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>// Final comments section</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const finalCommentSection = document.createElement('div');</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>finalCommentSection.className = "bg-[#1A1A2E] rounded-lg shadow-md p-6 mt-6 w-full";</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>finalCommentSection.innerHTML = `</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;h3 class="text-xl font-semibold text-gray-300 mb-4"&gt;Final Thoughts&lt;/h3&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;p class="text-gray-400 mb-4"&gt;Use this section for overall comments, conclusions. How should refer to the two types of text and screens? What should the detection buttons say on the video upload screen.&lt;/p&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;div class="space-y-2"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;input type="text" id="final-comment-input" placeholder="Add your final thoughts here..." class="w-full rounded-md border-gray-700 bg-gray-800 text-gray-300 shadow-sm focus:border-[#F26722] focus:ring-[#F26722] transition-colors duration-200 p-2.5 text-sm"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;button id="post-final-comment" class="w-full bg-[#F26722] hover:bg-[#D4591F] text-white font-semibold py-2 px-4 rounded-md shadow-md transition-colors duration-200 ease-in-out text-sm"&gt;Post Comment&lt;/button&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;div id="final-comments-gallery" class="mt-4 space-y-3 p-3 bg-gray-800 rounded-lg max-h-48 overflow-y-auto scroll-container"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;p class="text-center text-gray-500 text-sm"&gt;No comments yet.&lt;/p&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>`;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>summaryContainer.appendChild(finalCommentSection);</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>// Overall summary from Gemini</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const overallSummarySection = document.createElement('div');</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>overallSummarySection.className = "bg-[#1A1A2E] rounded-lg shadow-md p-6 mt-6 w-full text-center";</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>overallSummarySection.innerHTML = `</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;h3 class="text-xl font-semibold text-gray-300 mb-4"&gt;Overall Summary from Gemini&lt;/h3&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;div id="overall-summary-container" class="w-full text-left p-4 min-h-[50px] bg-gray-800 rounded-lg"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;p class="text-gray-400 italic"&gt;Generating overall summary...&lt;/p&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>`;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>summaryContainer.appendChild(overallSummarySection);</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>mainContent.appendChild(summaryContainer);</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const finalCommentInput = finalCommentSection.querySelector('#final-comment-input');</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const postFinalCommentBtn = finalCommentSection.querySelector('#post-final-comment');</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>postFinalCommentBtn.addEventListener('click', () =&gt; postComment('final_summary_comments', finalCommentInput));</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>finalCommentInput.addEventListener('keydown', (e) =&gt; {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>if (e.key === 'Enter') postComment('final_summary_comments', finalCommentInput);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>});</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>// This is the fix: start the listener AFTER the elements have been appended to the DOM.</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>startCommentListener('final_summary_comments', finalCommentSection.querySelector('#final-comments-gallery'), null);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>await generateOverallSummary(overallSummarySection.querySelector('#overall-summary-container'));</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const navigationContainer = document.createElement('div');</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>navigationContainer.className = "flex justify-center items-center gap-4 mt-4 w-full";</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>navigationContainer.innerHTML = `</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;button id="prev-btn" class="bg-gray-700 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded-full transition-colors duration-200 ease-in-out disabled:opacity-50 disabled:cursor-not-allowed text-sm"&gt;&amp;larr; Back&lt;/button&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>`;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>navigationContainer.querySelector('#prev-btn').addEventListener('click', showPrevious);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>summaryContainer.appendChild(navigationContainer);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>};</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>const showNext = () =&gt; {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>if (currentImageIndex &lt;= images.length) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>currentImageIndex++;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>renderContent();</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>};</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>const showPrevious = () =&gt; {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>if (currentImageIndex &gt; 0) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>currentImageIndex--;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>renderContent();</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>};</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>const postComment = async (imageId, inputElement) =&gt; {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const commentText = inputElement.value.trim();</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>if (!commentText) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>return;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>try {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>await addDoc(collection(db, commentsPath), {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>imageId,</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>userId,</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>userName,</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>commentText,</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>createdAt: serverTimestamp()</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>});</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>inputElement.value = '';</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>} catch (e) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>console.error("Error adding comment:", e);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>showErrorMessage(`Error posting comment: ${e.message}`);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>};</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>const updateComment = async (commentId, newText) =&gt; {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>try {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>await updateDoc(doc(db, commentsPath, commentId), {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>commentText: newText</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>});</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>} catch (e) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>console.error("Error updating comment:", e);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>showErrorMessage(`Error updating comment: ${e.message}`);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>};</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>const getAllComments = async () =&gt; {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const commentsCollection = collection(db, commentsPath);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const querySnapshot = await getDocs(commentsCollection);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const comments = [];</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>querySnapshot.forEach(doc =&gt; {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>comments.push({ ...doc.data(), id: doc.id });</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>});</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>return comments;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>const getGeminiSuggestions = async (imageQuestion, comments) =&gt; {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>if (!comments || comments.length === 0) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>return "No comments to analyze yet. Please add a comment to get a summary.";</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const allCommentsText = comments.map(c =&gt; c.commentText).join('\n');</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const systemPrompt = "You are a product analyst. Your task is to provide a concise, single-paragraph summary of the key findings and suggestions from the provided user feedback. Focus on identifying common themes and actionable insights.";</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const userQuery = `Original Image Description: ${imageQuestion}\n\nUser Comments:\n${allCommentsText}\n\nSummarize the key themes and actionable insights from these comments in relation to the original image description.`;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const apiKey = "";</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const payload = {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>contents: [{ parts: [{ text: userQuery }] }],</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>systemInstruction: {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>parts: [{ text: systemPrompt }]</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>};</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>try {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>const response = await fetch(apiUrl, {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>method: 'POST',</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>headers: { 'Content-Type': 'application/json' },</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>body: JSON.stringify(payload)</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>});</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>const result = await response.json();</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>return result.candidates?.[0]?.content?.parts?.[0]?.text || "Failed to generate suggestions.";</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>} catch (e) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>console.error("Error calling Gemini API:", e);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>return "Failed to generate suggestions. Please try again later.";</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>};</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>const getGeminiIdeas = async (imageQuestion) =&gt; {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const systemPrompt = "You are a subject matter expert on object detection for videos and images. Your task is to provide a clear and direct answer to the user's question about describing objects.";</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const userQuery = `Original question: ${imageQuestion}\n\nProvide an expert answer to this question.`;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const apiKey = "";</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const payload = {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>contents: [{ parts: [{ text: userQuery }] }],</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>systemInstruction: {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>parts: [{ text: systemPrompt }]</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>};</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>try {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>const response = await fetch(apiUrl, {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>method: 'POST',</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>headers: { 'Content-Type': 'application/json' },</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>body: JSON.stringify(payload)</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>});</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>const result = await response.json();</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>return result.candidates?.[0]?.content?.parts?.[0]?.text || "Failed to generate ideas.";</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>} catch (e) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>console.error("Error calling Gemini API:", e);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>return "Failed to generate ideas. Please try again later.";</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>};</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>const generateOverallSummary = async (container) =&gt; {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>container.innerHTML = `&lt;p class="text-gray-400 italic"&gt;Generating overall summary...&lt;/p&gt;`;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>try {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>const allComments = await getAllComments();</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>if (allComments.length === 0) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>container.innerHTML = `&lt;p class="text-gray-400 italic"&gt;No comments to summarize yet. The overall summary will appear here once your team has left comments on the images.&lt;/p&gt;`;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>return;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>const allCommentsText = allComments.map(c =&gt; c.commentText).join('\n');</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>const userQuery = `Summarize the key themes and ideas from the following comments, focusing on patterns and insights about how to categorize objects and text: \n\n${allCommentsText}`;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">                </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>const apiKey = "";</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>const payload = {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>contents: [{ parts: [{ text: userQuery }] }],</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>systemInstruction: {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>parts: [{ text: "You are a product analyst. Your task is to provide a concise, insightful summary of the key findings from a collection of user comments. Do not mention that this is a summary of comments, simply state the findings." }]</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>};</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>const response = await fetch(apiUrl, {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>method: 'POST',</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>headers: { 'Content-Type': 'application/json' },</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>body: JSON.stringify(payload)</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>});</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>const result = await response.json();</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>const summary = result.candidates?.[0]?.content?.parts?.[0]?.text || "Failed to generate summary.";</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>container.innerHTML = `&lt;p class="text-gray-400"&gt;${summary}&lt;/p&gt;`;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>} catch (e) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>console.error("Error generating overall summary:", e);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>container.innerHTML = `&lt;p class="text-red-500"&gt;Failed to generate summary. Please try again later.&lt;/p&gt;`;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>};</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>const startCommentListener = (imageId, commentsGalleryElement, summaryContainerElement) =&gt; {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const image = images.find(img =&gt; img.id === imageId);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const imageQuestion = image ? image.question : '';</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const q = query(collection(db, commentsPath), where("imageId", "==", imageId));</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>onSnapshot(q, async (snapshot) =&gt; {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>const comments = [];</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>snapshot.forEach((doc) =&gt; {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>comments.push({ id: doc.id, ...doc.data() });</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>});</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">                </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>comments.sort((a, b) =&gt; {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>if (!a.createdAt) return 1;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>if (!b.createdAt) return -1;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>return b.createdAt.toDate() - a.createdAt.toDate();</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>});</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">                </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>if (commentsGalleryElement) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>commentsGalleryElement.innerHTML = '';</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>if (comments.length === 0) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>commentsGalleryElement.innerHTML = '&lt;p class="text-center text-gray-500 text-sm"&gt;No comments yet.&lt;/p&gt;';</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>} else {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>comments.forEach(comment =&gt; {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>const commentElement = document.createElement('div');</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>commentElement.className = "bg-gray-800 p-2 rounded-md shadow-sm comment-container";</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>commentElement.dataset.commentId = comment.id;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>const isUserComment = comment.userId === userId;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>const displayUser = comment.userName || comment.userId;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>let editSection = '';</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>if (isUserComment) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>editSection = `</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                                    </span>&lt;div class="mt-2 text-right"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                                        </span>&lt;button class="edit-btn text-xs text-[#F26722] hover:text-orange-500 font-medium"&gt;Edit&lt;/button&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                                    </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>`;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>commentElement.innerHTML = `</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>&lt;p class="comment-text text-gray-300 text-sm"&gt;${comment.commentText}&lt;/p&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>&lt;p class="text-gray-500 text-xs mt-1 truncate"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                                    </span>by ${displayUser}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>&lt;/p&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>${editSection}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>`;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>commentsGalleryElement.appendChild(commentElement);</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>if (isUserComment) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>const editButton = commentElement.querySelector('.edit-btn');</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>editButton.addEventListener('click', () =&gt; {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                                    </span>const commentTextElement = commentElement.querySelector('.comment-text');</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                                    </span>const originalText = commentTextElement.textContent;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">                                    </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                                    </span>commentElement.innerHTML = `</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                                        </span>&lt;textarea class="edit-input w-full p-2 text-sm border rounded-md bg-gray-900 text-gray-300 focus:outline-none focus:ring focus:border-[#F26722]"&gt;${originalText}&lt;/textarea&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                                        </span>&lt;div class="mt-2 flex justify-end space-x-2"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                                            </span>&lt;button class="save-btn px-3 py-1 bg-green-500 text-white text-xs rounded-md hover:bg-green-600"&gt;Save&lt;/button&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                                            </span>&lt;button class="cancel-btn px-3 py-1 bg-gray-300 text-gray-800 text-xs rounded-md hover:bg-gray-400"&gt;Cancel&lt;/button&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                                        </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                                    </span>`;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                                    </span>const saveButton = commentElement.querySelector('.save-btn');</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                                    </span>const cancelButton = commentElement.querySelector('.cancel-btn');</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                                    </span>const editInput = commentElement.querySelector('.edit-input');</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                                    </span>saveButton.addEventListener('click', () =&gt; {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                                        </span>const newText = editInput.value.trim();</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                                        </span>if (newText &amp;&amp; newText !== originalText) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                                            </span>updateComment(comment.id, newText);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                                        </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                                    </span>});</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                                    </span>cancelButton.addEventListener('click', () =&gt; {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                                        </span>commentElement.innerHTML = `</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                                            </span>&lt;p class="comment-text text-gray-300 text-sm"&gt;${originalText}&lt;/p&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                                            </span>&lt;p class="text-gray-500 text-xs mt-1 truncate"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                                                </span>by ${displayUser}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                                            </span>&lt;/p&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                                            </span>&lt;div class="mt-2 text-right"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                                                </span>&lt;button class="edit-btn text-xs text-[#F26722] hover:text-orange-500 font-medium"&gt;Edit&lt;/button&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                                            </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                                        </span>`;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                                    </span>});</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>});</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>});</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>}</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">                </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>if (summaryContainerElement) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>summaryContainerElement.innerHTML = '&lt;p class="text-center text-gray-500 text-sm"&gt;Generating suggestions...&lt;/p&gt;';</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>const suggestions = await getGeminiSuggestions(imageQuestion, comments);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>summaryContainerElement.textContent = suggestions;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>}, (error) =&gt; {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>console.error("Error listening to Firestore:", error);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>showErrorMessage(`Firestore Listener Error: ${error.message}`);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>});</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>};</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>setupFirebase();</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;/script&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/body&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/html&gt;</span></p>
+</body>
+</html>
