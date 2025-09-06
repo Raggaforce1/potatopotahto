@@ -410,6 +410,7 @@
 <p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const allCommentsText = comments.map(c =&gt; c.commentText).join('\n');</span></p>
 <p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const systemPrompt = "You are a product analyst. Your task is to provide a concise, single-paragraph summary of the key findings and suggestions from the provided user feedback. Focus on identifying common themes and actionable insights.";</span></p>
 <p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const userQuery = `Original Image Description: ${imageQuestion}\n\nUser Comments:\n${allCommentsText}\n\nSummarize the key themes and actionable insights from these comments in relation to the original image description.`;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>// Add your Gemini API key here</span></p>
 <p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const apiKey = "";</span></p>
 <p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;</span></p>
 <p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const payload = {</span></p>
@@ -436,6 +437,7 @@
 <p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>const getGeminiIdeas = async (imageQuestion) =&gt; {</span></p>
 <p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const systemPrompt = "You are a subject matter expert on object detection for videos and images. Your task is to provide a clear and direct answer to the user's question about describing objects.";</span></p>
 <p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const userQuery = `Original question: ${imageQuestion}\n\nProvide an expert answer to this question.`;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>// Add your Gemini API key here</span></p>
 <p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const apiKey = "";</span></p>
 <p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;</span></p>
 <p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const payload = {</span></p>
@@ -471,6 +473,7 @@
 <p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>const allCommentsText = allComments.map(c =&gt; c.commentText).join('\n');</span></p>
 <p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>const userQuery = `Summarize the key themes and ideas from the following comments, focusing on patterns and insights about how to categorize objects and text: \n\n${allCommentsText}`;</span></p>
 <p class="p2"><span class="s1"><span class="Apple-converted-space">                </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>// Add your Gemini API key here</span></p>
 <p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>const apiKey = "";</span></p>
 <p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;</span></p>
 <p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>const payload = {</span></p>
